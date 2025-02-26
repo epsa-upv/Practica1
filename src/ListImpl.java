@@ -29,17 +29,27 @@ public class ListImpl <E> implements List<E> {
         }
     }
 
-    private class CIterator implements Iterator<E>{
-        //S
+    private class CIterator implements Iterator<E> {
+        private Node<E> actual;
+
+        // Constructor que inicializa el iterator al primer nodo
+        public CIterator() {
+            this.actual = primero;
+        }
 
         @Override
         public boolean hasNext() {
-            return false;
+            return actual != null;
         }
 
         @Override
         public E next() {
-            return null;
+            if (!hasNext()) {
+                throw new java.util.NoSuchElementException();
+            }
+            E dato = actual.dato;
+            actual = actual.siguiente;
+            return dato;
         }
     }
 
