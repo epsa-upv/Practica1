@@ -11,9 +11,5 @@ public interface Dictionary<K,V> extends Iterable<K>
     void clear();
     Iterator<K> iterator();
 
-
-
-
-
 }
 
