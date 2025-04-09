@@ -15,8 +15,8 @@ public class TestAVL {
         System.out.println("Buscar 100: " + (avl.search(100) != null ? "Encontrado" : "No encontrado"));
 
         // Prueba de mínimo y máximo
-        System.out.println("Mínimo: " + avl.min().data);
-        System.out.println("Máximo: " + avl.max().data);
+        System.out.println("Mínimo: " + avl.min().getData());
+        System.out.println("Máximo: " + avl.max().getData());
 
         // Prueba de iterador postorden
         System.out.println("Recorrido postorden:");

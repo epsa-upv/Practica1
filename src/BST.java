@@ -1,14 +1,28 @@
+
 import java.util.Iterator;
 import java.util.Stack;
 
 public class BST<T extends Comparable<T>> implements Iterable<T> {
-    private class Node {
-        T data;
-        Node left, right;
+    public class Node {
+        private T data;
+        private Node left, right;
 
         Node(T data) {
             this.data = data;
             left = right = null;
+        }
+
+        // Métodos de acceso público
+        public T getData() {
+            return data;
+        }
+
+        public Node getLeft() {
+            return left;
+        }
+
+        public Node getRight() {
+            return right;
         }
     }
 
@@ -31,16 +45,16 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
 
         while (current != null) {
             parent = current;
-            if (value.compareTo(current.data) < 0) {
-                current = current.left;
-            } else if (value.compareTo(current.data) > 0) {
-                current = current.right;
+            if (value.compareTo(current.getData()) < 0) {
+                current = current.getLeft();
+            } else if (value.compareTo(current.getData()) > 0) {
+                current = current.getRight();
             } else {
                 return; // Valor duplicado, no se inserta
             }
         }
 
-        if (value.compareTo(parent.data) < 0) {
+        if (value.compareTo(parent.getData()) < 0) {
             parent.left = newNode;
         } else {
             parent.right = newNode;
@@ -51,12 +65,12 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
     public Node search(T value) {
         Node current = root;
         while (current != null) {
-            if (value.compareTo(current.data) == 0) {
+            if (value.compareTo(current.getData()) == 0) {
                 return current;
-            } else if (value.compareTo(current.data) < 0) {
-                current = current.left;
+            } else if (value.compareTo(current.getData()) < 0) {
+                current = current.getLeft();
             } else {
-                current = current.right;
+                current = current.getRight();
             }
         }
         return null;
@@ -68,24 +82,24 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         Node current = root;
 
         // Buscar el nodo a eliminar
-        while (current != null && !current.data.equals(value)) {
+        while (current != null && !current.getData().equals(value)) {
             parent = current;
-            if (value.compareTo(current.data) < 0) {
-                current = current.left;
+            if (value.compareTo(current.getData()) < 0) {
+                current = current.getLeft();
             } else {
-                current = current.right;
+                current = current.getRight();
             }
         }
 
         if (current == null) return; // No se encontró el valor
 
         // Caso 1: Nodo sin hijos o con un solo hijo
-        if (current.left == null || current.right == null) {
-            Node newChild = current.left != null ? current.left : current.right;
+        if (current.getLeft() == null || current.getRight() == null) {
+            Node newChild = current.getLeft() != null ? current.getLeft() : current.getRight();
 
             if (parent == null) {
                 root = newChild;
-            } else if (parent.left == current) {
+            } else if (parent.getLeft() == current) {
                 parent.left = newChild;
             } else {
                 parent.right = newChild;
@@ -94,19 +108,19 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // Caso 2: Nodo con dos hijos
         else {
             Node successorParent = current;
-            Node successor = current.right;
+            Node successor = current.getRight();
 
-            while (successor.left != null) {
+            while (successor.getLeft() != null) {
                 successorParent = successor;
-                successor = successor.left;
+                successor = successor.getLeft();
             }
 
-            current.data = successor.data;
+            current.data = successor.getData();
 
-            if (successorParent.left == successor) {
-                successorParent.left = successor.right;
+            if (successorParent.getLeft() == successor) {
+                successorParent.left = successor.getRight();
             } else {
-                successorParent.right = successor.right;
+                successorParent.right = successor.getRight();
             }
         }
     }
@@ -116,8 +130,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         if (root == null) return null;
 
         Node current = root;
-        while (current.right != null) {
-            current = current.right;
+        while (current.getRight() != null) {
+            current = current.getRight();
         }
         return current;
     }
@@ -127,8 +141,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         if (root == null) return null;
 
         Node current = root;
-        while (current.left != null) {
-            current = current.left;
+        while (current.getLeft() != null) {
+            current = current.getLeft();
         }
         return current;
     }
@@ -149,12 +163,12 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             public T next() {
                 while (current != null) {
                     stack.push(current);
-                    current = current.left;
+                    current = current.getLeft();
                 }
 
                 Node node = stack.pop();
-                current = node.right;
-                return node.data;
+                current = node.getRight();
+                return node.getData();
             }
         };
     }

@@ -2,14 +2,31 @@ import java.util.Iterator;
 import java.util.Stack;
 
 public class AVL<T extends Comparable<T>> implements Iterable<T> {
-    private class Node {
-        T data;
-        Node left, right;
-        int height;
+    public class Node {
+        private T data;
+        private Node left, right;
+        private int height;
 
         Node(T data) {
             this.data = data;
             this.height = 1;
+        }
+
+        // Métodos de acceso público
+        public T getData() {
+            return data;
+        }
+
+        public Node getLeft() {
+            return left;
+        }
+
+        public Node getRight() {
+            return right;
+        }
+
+        public int getHeight() {
+            return height;
         }
     }
 
@@ -121,12 +138,12 @@ public class AVL<T extends Comparable<T>> implements Iterable<T> {
     public Node search(T value) {
         Node current = root;
         while (current != null) {
-            if (value.compareTo(current.data) == 0) {
+            if (value.compareTo(current.getData()) == 0) {
                 return current;
-            } else if (value.compareTo(current.data) < 0) {
-                current = current.left;
+            } else if (value.compareTo(current.getData()) < 0) {
+                current = current.getLeft();
             } else {
-                current = current.right;
+                current = current.getRight();
             }
         }
         return null;
@@ -276,4 +293,5 @@ public class AVL<T extends Comparable<T>> implements Iterable<T> {
             }
         };
     }
+
 }

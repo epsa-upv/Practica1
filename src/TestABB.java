@@ -16,8 +16,8 @@ public class TestABB {
         System.out.println("Buscar 100: " + (bst.search(100) != null ? "Encontrado" : "No encontrado"));
 
         // Prueba de mínimo y máximo
-        System.out.println("Mínimo: " + bst.min().data);
-        System.out.println("Máximo: " + bst.max().data);
+        System.out.println("Mínimo: " + bst.min().getData());
+        System.out.println("Máximo: " + bst.max().getData());
 
         // Prueba de iterador inorden
         System.out.println("Recorrido inorden:");
