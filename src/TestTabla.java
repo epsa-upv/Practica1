@@ -7,5 +7,12 @@ class TestTabla {
         System.out.println(tabla);
         tabla.remove("Dos");
         System.out.println(tabla);
+
+        System.out.println(tabla.get("Uno")); // ➝ 1
+        System.out.println(tabla.contains("Dos")); // ➝ true
+        System.out.println(tabla.size()); // ➝ 3
+
+        System.out.println(tabla.contains("Dos")); // ➝ false
+        System.out.println(tabla); // ➝ {Uno=1, Tres=3}
     }
 }

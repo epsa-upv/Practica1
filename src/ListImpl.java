@@ -119,6 +119,4 @@ public class ListImpl <E> implements List<E> {
         List.super.forEach(action);
     }
 
-
-
 }
